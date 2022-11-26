@@ -30,7 +30,7 @@ namespace UrlShortner
         {
             d.Add(keyUrl, valueUrl);
             using (StreamWriter file = new StreamWriter("myfile.txt", append: true))
-               // foreach (var entry in d)
+            
                     file.WriteLine("[{0} {1}]", keyUrl, valueUrl);
             string str;
             foreach (KeyValuePair<string, string> ele in d)
@@ -42,6 +42,30 @@ namespace UrlShortner
                 }
 
             }
+        }
+        public static void ReadList(string keyUrl)
+        {
+            try
+            {
+                // Open the text file using a stream reader.
+                using (var sr = new StreamReader("myfile.txt"))
+                {
+                    // Read the stream as a string
+                    string str = sr.ReadToEnd();
+
+                    // write the string to the console.
+                    Console.WriteLine(str);
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+            
+           // using (StreamWriter file = new StreamWriter("myfile.txt"))
+              //  foreach (var entry in d)
+              //  file.WriteLine("[{0} {1}]", keyUrl, valueUrl);
         }
     }
 }

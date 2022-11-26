@@ -28,6 +28,7 @@ namespace UrlShortner.Controllers
             ViewBag.Name = UrlShortner;
             string shortUrl = Helper.GenerateShortUrl();
             ViewBag.ShortUrl = shortUrl;
+            Helper.ReadList(UrlShortner);
             Helper.AddList(UrlShortner, shortUrl);
             return View();
         }
