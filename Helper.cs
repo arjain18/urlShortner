@@ -1,7 +1,10 @@
-﻿namespace UrlShortner
+﻿using System.Collections.Generic;
+
+namespace UrlShortner
 {
     public class Helper
     {
+        static IDictionary<string, string> d = new Dictionary<string, string>();
         public static string GenerateShortUrl()
         {
             Random rand = new Random();
@@ -21,6 +24,20 @@
                 shortUrl = shortUrl + letter;
             }
              return shortUrl = "www.shorty.com/" + shortUrl;
+        }
+        public static void AddList(string keyUrl, string valueUrl)
+        {
+            d.Add(keyUrl, valueUrl);
+            string str;
+            foreach (KeyValuePair<string, string> ele in d)
+            {
+                Console.WriteLine("Key = {0}, Value = {1}", ele.Key, ele.Value);
+                if (d.TryGetValue("1", out str))
+                {
+                    Console.WriteLine(ele.Value);
+                }
+
+            }
         }
     }
 }

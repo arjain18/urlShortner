@@ -26,7 +26,9 @@ namespace UrlShortner.Controllers
             flag = true;
             ViewBag.flagvalue = flag;
             ViewBag.Name = UrlShortner;
-            ViewBag.ShortUrl = Helper.GenerateShortUrl();
+            string shortUrl = Helper.GenerateShortUrl();
+            ViewBag.ShortUrl = shortUrl;
+            Helper.AddList(UrlShortner, shortUrl);
             return View();
         }
         public IActionResult Privacy()
