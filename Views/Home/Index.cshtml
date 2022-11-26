@@ -13,3 +13,10 @@
     @Html.TextBox("UrlShortner")
     <input type="submit" value="Submit"/>
 }
+@if (ViewBag.flagvalue)
+{
+    <a>Value of URL </a> @ViewBag.Name 
+    <p>
+        Short Url
+    </p>
+}

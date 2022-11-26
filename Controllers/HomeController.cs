@@ -7,7 +7,7 @@ namespace UrlShortner.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        bool flag = false;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -16,12 +16,16 @@ namespace UrlShortner.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.flagvalue = flag;
             return View();
         }
 
         [HttpPost]
         public IActionResult Index(string UrlShortner)
         {
+            flag = true;
+            ViewBag.flagvalue = flag;
+            ViewBag.Name = UrlShortner;
             return View();
         }
         public IActionResult Privacy()
