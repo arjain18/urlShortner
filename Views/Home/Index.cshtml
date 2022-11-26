@@ -4,5 +4,12 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p><a>Pease enter the url to shorten</a>.</p>
+
 </div>
+@using(Html.BeginForm("Index","Home",FormMethod.Post))
+{
+    <label>Enter Url</label>
+    @Html.TextBox("UrlShortner")
+    <input type="submit" value="Submit"/>
+}

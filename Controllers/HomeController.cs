@@ -13,11 +13,17 @@ namespace UrlShortner.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(string UrlShortner)
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
