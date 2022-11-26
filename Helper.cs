@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace UrlShortner
 {
@@ -28,6 +29,9 @@ namespace UrlShortner
         public static void AddList(string keyUrl, string valueUrl)
         {
             d.Add(keyUrl, valueUrl);
+            using (StreamWriter file = new StreamWriter("myfile.txt", append: true))
+               // foreach (var entry in d)
+                    file.WriteLine("[{0} {1}]", keyUrl, valueUrl);
             string str;
             foreach (KeyValuePair<string, string> ele in d)
             {
