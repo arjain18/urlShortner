@@ -24,12 +24,19 @@ namespace UrlShortner.Controllers
         public IActionResult Index(string UrlShortner)
         {
             flag = true;
+            string shortValue;
             ViewBag.flagvalue = flag;
             ViewBag.Name = UrlShortner;
             string shortUrl = Helper.GenerateShortUrl();
-            ViewBag.ShortUrl = shortUrl;
-            Helper.ReadList(UrlShortner);
-            Helper.AddList(UrlShortner, shortUrl);
+            
+            shortValue =  Helper.ReadList(UrlShortner);
+            if (shortValue=="")
+            { 
+                Helper.AddList(UrlShortner, shortUrl);
+                ViewBag.ShortUrl = shortUrl;
+            }
+            else
+                ViewBag.ShortUrl = shortValue;
             return View();
         }
         public IActionResult Privacy()

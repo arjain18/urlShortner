@@ -11,7 +11,8 @@ namespace UrlShortner
             Random rand = new Random();
 
             // Choosing the size of string
-            int stringlen = rand.Next(4, 10);
+            //int stringlen = rand.Next(4, 10);
+            int stringlen = 5;
             int randValue;
             string shortUrl = "";
             char letter;
@@ -43,18 +44,38 @@ namespace UrlShortner
 
             }
         }
-        public static void ReadList(string keyUrl)
+        public static string ReadList(string keyUrl)
         {
+            string urlValue = "";
             try
             {
                 // Open the text file using a stream reader.
                 using (var sr = new StreamReader("myfile.txt"))
                 {
+                   
                     // Read the stream as a string
-                    string str = sr.ReadToEnd();
+                    string strFileString = sr.ReadToEnd();
 
                     // write the string to the console.
-                    Console.WriteLine(str);
+                    Console.WriteLine(strFileString);
+
+                    //check for the string
+                    string keyUrlSearch = keyUrl + " "; //extra space is added to get complete url not as sub string
+                    int keyUrlSearchLen = keyUrlSearch.Length;
+
+                    if (strFileString.Contains(keyUrlSearch))
+                    {
+                        int i = strFileString.IndexOf(keyUrlSearch);
+                        i = i + keyUrlSearchLen;
+
+                        //reading value
+                        int k = i + 20;
+                        urlValue = strFileString.Substring(i, 20);
+                        Console.WriteLine("value " + urlValue);
+                    }
+                    Console.WriteLine(urlValue);
+                    
+
                 }
             }
             catch (IOException e)
@@ -62,10 +83,7 @@ namespace UrlShortner
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }
-            
-           // using (StreamWriter file = new StreamWriter("myfile.txt"))
-              //  foreach (var entry in d)
-              //  file.WriteLine("[{0} {1}]", keyUrl, valueUrl);
+            return urlValue;
         }
     }
 }
