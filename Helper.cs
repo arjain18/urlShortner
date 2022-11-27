@@ -6,6 +6,11 @@ namespace UrlShortner
     public class Helper
     {
         static IDictionary<string, string> d = new Dictionary<string, string>();
+        static string path = @"\mydir\";
+        static string pathFolder = "source";
+        static string fileName = "myfile.txt";
+        static string completePathFolder = Path.Combine(Path.GetPathRoot(path), pathFolder);
+        static string completePathFile = Path.Combine(Path.GetPathRoot(path), pathFolder, fileName);
         public static string GenerateShortUrl()
         {
             Random rand = new Random();
@@ -30,8 +35,11 @@ namespace UrlShortner
         public static void AddList(string keyUrl, string valueUrl)
         {
             d.Add(keyUrl, valueUrl);
-            using (StreamWriter file = new StreamWriter("myfile.txt", append: true))
-            file.WriteLine("[{0} {1}]", keyUrl, valueUrl);
+            if (!Directory.Exists(completePathFolder))
+                Directory.CreateDirectory(completePathFolder);
+            // using (StreamWriter file = new StreamWriter("c:\\source\\myfile.txt", append: true))
+            using (StreamWriter file = new StreamWriter(completePathFile, append: true))
+                file.WriteLine("[{0} {1}]", keyUrl, valueUrl);
 
         }
         public static string ReadList(string keyUrl)
@@ -40,7 +48,7 @@ namespace UrlShortner
             try
             {
                 // Open the text file using a stream reader.
-                using (var sr = new StreamReader("myfile.txt"))
+                using (var sr = new StreamReader(completePathFile))
                 {
                    
                     // Read the stream as a string
