@@ -21,24 +21,35 @@ namespace UrlShortner.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string UrlShortner)
+       public IActionResult Index(string UrlShortner)
+        {
+            ViewBag.Name = UrlShortner;
+            ViewBag.ShortUrl = IndexApi(UrlShortner);
+           return View();
+            
+        }
+
+        [HttpPost]
+        [Route("index")]
+        public string IndexApi(string UrlShortner)
         {
             flag = true;
             string shortValue;
             ViewBag.flagvalue = flag;
-            ViewBag.Name = UrlShortner;
-            string shortUrl = Helper.GenerateShortUrl();
+            string shortUrl = "";
             
-            shortValue =  Helper.ReadList(UrlShortner);
-            if (shortValue=="")
-            { 
+            shortValue = Helper.ReadList(UrlShortner);
+            if (shortValue == "")
+            {
+                shortUrl= Helper.GenerateShortUrl();
                 Helper.AddList(UrlShortner, shortUrl);
                 ViewBag.ShortUrl = shortUrl;
             }
             else
                 ViewBag.ShortUrl = shortValue;
-            return View();
+            return ViewBag.ShortUrl;
         }
+
         public IActionResult Privacy()
         {
             return View();

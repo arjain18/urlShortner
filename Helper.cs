@@ -31,18 +31,8 @@ namespace UrlShortner
         {
             d.Add(keyUrl, valueUrl);
             using (StreamWriter file = new StreamWriter("myfile.txt", append: true))
-            
-                    file.WriteLine("[{0} {1}]", keyUrl, valueUrl);
-            string str;
-            foreach (KeyValuePair<string, string> ele in d)
-            {
-                Console.WriteLine("Key = {0}, Value = {1}", ele.Key, ele.Value);
-                if (d.TryGetValue("1", out str))
-                {
-                    Console.WriteLine(ele.Value);
-                }
+            file.WriteLine("[{0} {1}]", keyUrl, valueUrl);
 
-            }
         }
         public static string ReadList(string keyUrl)
         {
@@ -71,10 +61,8 @@ namespace UrlShortner
                         //reading value
                         int k = i + 20;
                         urlValue = strFileString.Substring(i, 20);
-                        Console.WriteLine("value " + urlValue);
                     }
-                    Console.WriteLine(urlValue);
-                    
+                                     
 
                 }
             }
